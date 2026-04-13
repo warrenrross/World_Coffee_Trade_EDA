@@ -43,3 +43,28 @@ reports/            — HTML EDA reports (served via GitHub Pages)
 - BACI `Unit_Value_USD_per_t = (Value_1000USD * 1000) / Quantity_tonnes`; trim to [100, 50000] for trend analysis
 - FAOSTAT: filter out regional aggregates (rows where country contains 'World', 'Africa', 'Asia', etc.)
 - USDA PSD units are 1000 × 60kg bags
+
+---
+
+## Session Log
+
+### Session 1 — Repo setup and BACI EDA migration
+
+**Completed:**
+- Created `warrenrross/World_Coffee_Trade_EDA` and connected local repo
+- Migrated BACI EDA notebook + Jupytext-synced `.py`/`.md`, figures, data, and config from the old `Perplexity/Coffee_bean_trade_BACI/` working folder
+- Configured nbdime + Jupytext + nbstripout; verified `jupytext --sync` runs clean
+- Added HTML profile and sweetviz reports to `reports/` for GitHub Pages
+- Created `README.md`, `CLAUDE.md`, `memory.md`, `skill.md`
+- Moved `jupyter_version_control_spec.md` here from the Trade Flows repo
+- Updated Trade Flows repo (`warrenrross/World_Coffee_Trade`) README and `memory.md` to link back here
+- Flattened `data/` — removed `data/baci/` and `data_raw/` subdirectories; all files now sit at `data/` root; `.xls`/`.xlsm` gitignored by extension
+
+**Architectural decisions:**
+- `data/` is flat — no source subdirectories. File prefixes (`coffee_bilateral_trade_*`) provide enough namespacing without folders.
+- Binary source files (`.xls`, `.xlsm`) live in `data/` locally but are gitignored by extension — no separate `data_raw/` directory needed.
+- `reports/` gitignore uses both `!reports/` and `!reports/*` — the directory-level negation alone does not un-ignore files inside it.
+- FOA notebook (`coffee_trade_eda.ipynb`) was intentionally left in its original location (`Perplexity/Coffee_bean_trade_FOA/`) — to be migrated in a future session.
+
+**Pending / next session:**
+- Continue EDA analysis and notebook development
