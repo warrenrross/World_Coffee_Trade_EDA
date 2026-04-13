@@ -89,8 +89,8 @@ nbdime + Jupytext + nbstripout — see `jupyter_version_control_spec.md` for ful
 ### Key decisions
 - **Jupytext format**: `notebooks///ipynb` + `scripts///py:percent` + `docs///md` — three parallel representations of each notebook
 - **nbstripout via `.gitattributes`**: outputs stripped automatically at `git add` time; no manual step required
-- **`.gitignore`**: `data_raw/` excluded (50MB+ binary source files); `*_profile_report.html` and `*_sweetviz_report.html` excluded from all paths except `reports/` (tracked for GitHub Pages)
+- **`.gitignore`**: `*.xls` and `*.xlsm` excluded by extension — these patterns apply everywhere in the repo so raw binary source files in `data/` are automatically ignored regardless of location; `*_profile_report.html` and `*_sweetviz_report.html` excluded from all paths except `reports/` (tracked for GitHub Pages)
 - **`reports/` re-inclusion**: gitignore uses `!reports/` + `!reports/*` negation pattern — `!reports/` alone is insufficient because the file-level pattern still matches inside the directory
 
-### Repository location
-`data_raw/` holds original `.xls` and `.xlsm` source files (gitignored). Rationale: binary formats don't diff, source files are large (50MB+), and the public download portals (FAOSTAT, USDA PSD) are canonical. The preprocessed CSVs in `data/` are what the notebooks actually use and are tracked normally.
+### Data directory
+All data lives flat in `data/` — no subdirectories. Tracked files (CSVs, data dictionaries) sit alongside gitignored raw binaries (`.xls`, `.xlsm`). Rationale for ignoring binaries: they don't diff, are large, and the public download portals (FAOSTAT, USDA PSD, CEPII) are canonical sources.

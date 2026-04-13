@@ -59,10 +59,7 @@ Raw `.xls` and `.xlsm` files are excluded from git (see `.gitignore`). The worki
 ## Repository structure
 
 ```
-data/baci/          — BACI bilateral trade CSV + data dictionaries
-data/fao/           — Preprocessed FAOSTAT CSV (to be added)
-data/usda/          — USDA PSD coffee CSV (to be added)
-data_raw/           — Raw binary source files (gitignored)
+data/               — CSVs and data dictionaries (.xls/.xlsm present but gitignored)
 notebooks/          — .ipynb source notebooks
 scripts/            — Jupytext-synced .py (percent format)
 docs/               — Jupytext-synced .md (narrative)

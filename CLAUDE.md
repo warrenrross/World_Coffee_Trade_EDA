@@ -6,8 +6,8 @@ This file provides guidance to Claude Code when working in this repository.
 
 EDA notebooks for the global coffee trade project. Two data sources:
 
-1. **BACI/CEPII** — Bilateral coffee trade flows 1995–2024 (`data/baci/coffee_bilateral_trade_BACI.csv`), HS codes 090111 and 090112, 136,768 rows
-2. **FAOSTAT** — Raw country-level production/trade `.xls` files in `data_raw/` (gitignored); preprocessed CSV to be added to `data/fao/`
+1. **BACI/CEPII** — Bilateral coffee trade flows 1995–2024 (`data/coffee_bilateral_trade_BACI.csv`), HS codes 090111 and 090112, 136,768 rows
+2. **FAOSTAT** — Raw country-level production/trade `.xls` files in `data/` (gitignored via `*.xls`); preprocessed CSV to be added to `data/`
 
 ## Running Notebooks
 
@@ -30,14 +30,12 @@ See `jupyter_version_control_spec.md` for full setup. Quick reference:
 ## Repository Structure
 
 ```
-data/baci/          — BACI bilateral trade CSV + data dictionary
-data/fao/           — Preprocessed FAOSTAT CSV + db_schema.md
-data/usda/          — USDA PSD coffee CSV
-data_raw/           — Raw .xls/.xlsm files (gitignored, 50MB+)
+data/               — CSVs and data dictionaries (.xls/.xlsm present locally but gitignored)
 notebooks/          — .ipynb files (source of truth)
 scripts/            — Jupytext-synced .py (percent format)
 docs/               — Jupytext-synced .md (narrative docs)
 figures/<notebook>/ — Saved PNGs, named descriptively
+reports/            — HTML EDA reports (served via GitHub Pages)
 ```
 
 ## Key Data Notes

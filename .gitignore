@@ -8,7 +8,6 @@
 !reports/*
 
 # ── Large raw / binary data files (not for git) ───────────────────────────────
-data_raw/
 *.xls
 *.xlsm
 
