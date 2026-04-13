@@ -1,9 +1,11 @@
 # ── Jupyter ───────────────────────────────────────────────────────────────────
 .ipynb_checkpoints/
 
-# ── Generated reports ─────────────────────────────────────────────────────────
+# ── Generated reports (ignored everywhere except reports/) ────────────────────
 *_profile_report.html
 *_sweetviz_report.html
+!reports/
+!reports/*
 
 # ── Large raw / binary data files (not for git) ───────────────────────────────
 data_raw/
