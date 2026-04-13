@@ -68,3 +68,19 @@ reports/            — HTML EDA reports (served via GitHub Pages)
 
 **Pending / next session:**
 - Continue EDA analysis and notebook development
+
+### Session 2 — New data sources, per capita analysis, Tableau validation
+
+**Completed:**
+- Added three new data sources to `data/`: population (World Bank via `baci_country_population.csv`), temperature (Berkeley Earth via `baci_country_temperature.csv`), and shipping/oil price (`global_shipping_oil_price.csv`) — each with data dictionaries
+- Built `scripts/per_capita_imports.py` — standalone script that joins BACI trade + population, computes USD per capita imports by country per year, writes to `data/per_capita_imports_by_country_year.csv`
+- Developed Tableau calculated field logic for per capita imports: `SUM([Value_1000USD]) * 1000 / [Population]`
+- Built `notebooks/explor_joining_data.ipynb` (+ Jupytext-synced `.py`/`.md`) — step-by-step walkthrough of the groupby → join → per capita logic with spot-check table for Tableau validation and year filter cell
+
+**Architectural decisions:**
+- Tableau calculated field uses `[Population]` directly (not `AVG` or `SUM`) because population is connected via a Tableau Relationship, preserving country-year granularity natively
+- `per_capita_imports.py` uses `AVG([Population])` equivalent logic: left join on ISO3+Year so population is a 1:1 match per country-year row after groupby
+- Notebooks must be authored via the `.py` file first — writing `.ipynb` directly causes Jupytext sync errors on open because the paired `.py` timestamp lags. Correct workflow: edit `.py` → `jupytext --sync scripts/<name>.py`
+
+**Known issues:**
+- 40 importer rows have no population match (small territories / ISO3 mismatches between BACI and World Bank). These show null per capita in both Python and Tableau.

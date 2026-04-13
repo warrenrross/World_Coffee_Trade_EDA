@@ -40,19 +40,15 @@ Key analyses:
 
 ## Data
 
-**Source:** [BACI — Base pour l'Analyse du Commerce International](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37), CEPII
+| File | Source | Description |
+|---|---|---|
+| `coffee_bilateral_trade_BACI.csv` | [CEPII BACI](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) | Bilateral trade flows 1995–2024, 136,768 rows, HS 090111 + 090112 |
+| `baci_country_population.csv` | World Bank | Annual population by ISO3 country, 1995–2024 |
+| `baci_country_temperature.csv` | Berkeley Earth | Annual avg temperature by country, 1995–2024 |
+| `global_shipping_oil_price.csv` | Various | Annual shipping index + Brent/WTI/Dubai oil prices, 1995–2024 |
+| `per_capita_imports_by_country_year.csv` | Derived | BACI + population joined; USD per capita imports by country per year |
 
-| Column | Description |
-|---|---|
-| `Year` | 1995–2024 |
-| `Exporter_ISO3` / `Importer_ISO3` | Country codes |
-| `HS_Code` | 090111 (Arabica) or 090112 (Robusta) |
-| `Value_1000USD` | Trade value in thousands of USD |
-| `Quantity_tonnes` | Trade quantity in metric tonnes |
-
-Derived: `Unit_Value_USD_per_t = (Value_1000USD × 1000) / Quantity_tonnes`
-
-Raw `.xls` and `.xlsm` files are excluded from git (see `.gitignore`). The working CSV is `data/baci/coffee_bilateral_trade_BACI.csv`.
+Raw `.xls` and `.xlsm` files are excluded from git (see `.gitignore`).
 
 ---
 
@@ -88,7 +84,7 @@ jupyter lab
 
 Each notebook is kept in sync with a `.py` script and a `.md` doc via [Jupytext](https://jupytext.readthedocs.io). Outputs are stripped before every commit by [nbstripout](https://github.com/kynan/nbstripout).
 
-- Edit in Jupyter → Jupytext auto-updates `scripts/` and `docs/`
+- **Always author via `.py`** — write or edit `scripts/<name>.py`, then `jupytext --sync scripts/<name>.py` generates the `.ipynb` and `.md`. Writing the `.ipynb` directly causes a sync timestamp error on open.
 - Review diffs in `.py`; read narrative in `.md`
 - `nbstripout` runs automatically on `git add`
 
